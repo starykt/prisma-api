@@ -14,20 +14,21 @@ export default {
           error: true,
           message: 'Já existe um usuário com este e-mail.'
         });
-        const user = await prisma.user.create({
-          data: {
-            name,
-            email,
-            createdAt,
-            updatedAt
-          }
-        });
-        return response.json({
-          error: false,
-          message: 'Usuário cadastrado. Bem vindo ao sistema!',
-          user
-        })
       }
+      const user = await prisma.user.create({
+        data: {
+          name,
+          email,
+          createdAt,
+          updatedAt
+        },
+      });
+
+      return response.json({
+        error: false,
+        message: 'Usuário cadastrado. Bem vindo ao sistema!',
+        user
+      });
     } catch(error) {
       return response.json({message: error.message});
     }
